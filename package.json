@@ -1,0 +1,72 @@
+{
+  "name": "Oni",
+  "version": "1.0.0",
+  "description": "Free Talking Service",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:osx": "build --mac",
+    "build:linux": "npm run build:linux32 && npm run build:linux64",
+    "build:linux32": "build --linux --ia32",
+    "build:linux64": "build --linux --x64",
+    "build:win": "npm run build:win32 && npm run build:win64", 
+    "build:win32": "electron-builder --win --ia32",
+    "build:win64": "electron-builder --win --x64"
+  },
+  "repository": "",
+  "keywords": [
+    "Oni"
+  ],
+  "author": "frigatebird",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-builder": "^22.3.2"
+  },
+  "build": {
+    "productName": "Oni",
+    "appId": "onifts.app.com",
+    "asar": true, 
+    "protocols" : {
+        "name" : "Oni",
+        "schemes" : ["Oni"]
+    },
+    "mac": { 
+      "target": [
+        "default"
+      ],
+      "icon": "./resources/installer/Icon.icns"
+    },
+    "dmg": {
+      "title": "Oni",
+      "icon": "./resources/installer/Icon.icns"
+    },
+    "win": {  
+      "target": [ 
+        "zip",  
+        "nsis"
+      ],
+      "icon": "./resources/installer/Icon.ico"
+    },
+    "linux": { 
+      "target": [
+        "AppImage", 
+        "deb",
+        "rpm",
+        "zip",
+        "tar.gz"
+      ],
+      "icon": "./resources/linuxicon"
+    },
+    "nsis":{
+      "oneClick" : false, 
+      "allowToChangeInstallationDirectory" :true 
+    },
+    "directories": {
+      "buildResources": "resources/installer/",
+      "output": "dist/",
+      "app": "."
+    }
+  },
+  "dependencies": {}
+}
